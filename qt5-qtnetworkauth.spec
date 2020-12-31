@@ -1,6 +1,7 @@
+#
 # Conditional build:
 %bcond_with	bootstrap	# disable features to able to build without installed qt5
-%bcond_without	doc	# Documentation
+%bcond_without	doc		# documentation
 
 %if %{with bootstrap}
 %undefine	with_doc
@@ -9,26 +10,25 @@
 %define		orgname		qtnetworkauth
 %define		qtbase_ver		%{version}
 %define		qtdeclarative_ver	%{version}
-%define		qttools_ver		5.8
+%define		qttools_ver		5.9
 Summary:	The Qt5 Network Auth library
 Summary(pl.UTF-8):	Biblioteka Qt5 Network Auth
 Name:		qt5-%{orgname}
 Version:	5.12.3
-Release:	1
-License:	LGPL v2.1 with Digia Qt LGPL Exception v1.1 or GPL v3.0
+Release:	2
+License:	GPL v3 or commercial
 Group:		X11/Libraries
 Source0:	http://download.qt.io/official_releases/qt/5.12/%{version}/submodules/%{orgname}-everywhere-src-%{version}.tar.xz
 # Source0-md5:	bc8f9a2e8e30476ba613c020f811c95c
-URL:		http://www.qt.io/
+URL:		https://www.qt.io/
 BuildRequires:	Qt5Core-devel >= %{qtbase_ver}
-BuildRequires:	Qt5Qml-devel >= %{qtdeclarative_ver}
-BuildRequires:	Qt5Quick-devel >= %{qtdeclarative_ver}
+BuildRequires:	Qt5Network-devel >= %{qtbase_ver}
 %if %{with doc}
 BuildRequires:	qt5-assistant >= %{qttools_ver}
 %endif
 BuildRequires:	qt5-build >= %{qtbase_ver}
 BuildRequires:	qt5-qmake >= %{qtbase_ver}
-BuildRequires:	rpmbuild(macros) >= 1.654
+BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -56,22 +56,22 @@ Summary:	The Qt5 Network Auth library
 Summary(pl.UTF-8):	Biblioteka Qt5 Network Auth
 Group:		Libraries
 Requires:	Qt5Core >= %{qtbase_ver}
-Requires:	Qt5Qml >= %{qtdeclarative_ver}
-Obsoletes:	qt5-qtnetworkauth
+Requires:	Qt5Network >= %{qtbase_ver}
 
 %description -n Qt5NetworkAuth
 Qt5 Network Auth library provides classes for network authentication.
 
 %description -n Qt5NetworkAuth -l pl.UTF-8
-Biblioteka Qt5 Network Auth dostarcza klasy do autoryzacji w sieci.
+Biblioteka Qt5 Network Auth dostarcza klasy do uwierzytelniania w
+sieci.
 
 %package -n Qt5NetworkAuth-devel
 Summary:	Qt5 Network Auth library - development files
 Summary(pl.UTF-8):	Biblioteka Qt5 Network Auth - pliki programistyczne
 Group:		Development/Libraries
 Requires:	Qt5Core-devel >= %{qtbase_ver}
+Requires:	Qt5Network-devel >= %{qtbase_ver}
 Requires:	Qt5NetworkAuth = %{version}-%{release}
-Obsoletes:	qt5-qtnetworkauth-devel
 
 %description -n Qt5NetworkAuth-devel
 Qt5 Network Auth library - development files.
@@ -82,11 +82,10 @@ Biblioteka Qt5 NetworkAuth - pliki programistyczne.
 %package doc
 Summary:	Qt5 Network Auth documentation in HTML format
 Summary(pl.UTF-8):	Dokumentacja do biblioteki Qt5 Network Auth w formacie HTML
+License:	FDL v1.3
 Group:		Documentation
 Requires:	qt5-doc-common >= %{qtbase_ver}
-%if "%{_rpmversion}" >= "5"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description doc
 Qt5 Network Auth documentation in HTML format.
@@ -97,11 +96,10 @@ Dokumentacja do biblioteki Qt5 Netwok Auth w formacie HTML.
 %package doc-qch
 Summary:	Qt5 Network Auth documentation in QCH format
 Summary(pl.UTF-8):	Dokumentacja do biblioteki Qt5 Network Auth w formacie QCH
+License:	FDL v1.3
 Group:		Documentation
 Requires:	qt5-doc-common >= %{qtbase_ver}
-%if "%{_rpmversion}" >= "5"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description doc-qch
 Qt5 Network Auth documentation in QCH format.
@@ -112,10 +110,9 @@ Dokumentacja do biblioteki Qt5 Network Auth w formacie QCH.
 %package examples
 Summary:	Qt5 Network Auth examples
 Summary(pl.UTF-8):	Przykłady do biblioteki Qt5 Network Auth
+License:	BSD or commercial
 Group:		X11/Development/Libraries
-%if "%{_rpmversion}" >= "5"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description examples
 Qt5 Network Auth examples.
@@ -133,6 +130,7 @@ qmake-qt5
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	INSTALL_ROOT=$RPM_BUILD_ROOT
 
@@ -180,15 +178,15 @@ rm -rf $RPM_BUILD_ROOT
 %files -n Qt5NetworkAuth
 %defattr(644,root,root,755)
 %doc LICENSE.GPL3-EXCEPT dist/changes-*
+%attr(755,root,root) %{_libdir}/libQt5NetworkAuth.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libQt5NetworkAuth.so.5
-%attr(755,root,root) %{_libdir}/libQt5NetworkAuth.so.5.*.*
 
 %files -n Qt5NetworkAuth-devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libQt5NetworkAuth.so
+%{_libdir}/libQt5NetworkAuth.prl
 %{_includedir}/qt5/QtNetworkAuth
 %{_libdir}/cmake/Qt5NetworkAuth
-%{_libdir}/libQt5NetworkAuth.prl
-%attr(755,root,root) %{_libdir}/libQt5NetworkAuth.so
 %{_pkgconfigdir}/Qt5NetworkAuth.pc
 %{_libdir}/qt5/mkspecs/modules/qt_lib_networkauth.pri
 %{_libdir}/qt5/mkspecs/modules/qt_lib_networkauth_private.pri
