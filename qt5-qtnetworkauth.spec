@@ -85,7 +85,7 @@ Summary(pl.UTF-8):	Dokumentacja do biblioteki Qt5 Network Auth w formacie HTML
 License:	FDL v1.3
 Group:		Documentation
 Requires:	qt5-doc-common >= %{qtbase_ver}
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description doc
 Qt5 Network Auth documentation in HTML format.
@@ -99,7 +99,7 @@ Summary(pl.UTF-8):	Dokumentacja do biblioteki Qt5 Network Auth w formacie QCH
 License:	FDL v1.3
 Group:		Documentation
 Requires:	qt5-doc-common >= %{qtbase_ver}
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description doc-qch
 Qt5 Network Auth documentation in QCH format.
@@ -112,7 +112,7 @@ Summary:	Qt5 Network Auth examples
 Summary(pl.UTF-8):	Przykłady do biblioteki Qt5 Network Auth
 License:	BSD or commercial
 Group:		X11/Development/Libraries
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description examples
 Qt5 Network Auth examples.
