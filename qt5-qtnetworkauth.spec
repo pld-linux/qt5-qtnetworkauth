@@ -14,12 +14,12 @@
 Summary:	The Qt5 Network Auth library
 Summary(pl.UTF-8):	Biblioteka Qt5 Network Auth
 Name:		qt5-%{orgname}
-Version:	5.12.3
-Release:	2
+Version:	5.15.2
+Release:	1
 License:	GPL v3 or commercial
 Group:		X11/Libraries
-Source0:	http://download.qt.io/official_releases/qt/5.12/%{version}/submodules/%{orgname}-everywhere-src-%{version}.tar.xz
-# Source0-md5:	bc8f9a2e8e30476ba613c020f811c95c
+Source0:	https://download.qt.io/official_releases/qt/5.15/%{version}/submodules/%{orgname}-everywhere-src-%{version}.tar.xz
+# Source0-md5:	a23c82ae0527d5bdde61882cabac1f01
 URL:		https://www.qt.io/
 BuildRequires:	Qt5Core-devel >= %{qtbase_ver}
 BuildRequires:	Qt5Network-devel >= %{qtbase_ver}
@@ -28,6 +28,7 @@ BuildRequires:	qt5-assistant >= %{qttools_ver}
 %endif
 BuildRequires:	qt5-build >= %{qtbase_ver}
 BuildRequires:	qt5-qmake >= %{qtbase_ver}
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -126,6 +127,7 @@ Przykłady do biblioteki Qt5 Network Auth.
 %build
 qmake-qt5
 %{__make}
+
 %{?with_doc:%{__make} docs}
 
 %install
