@@ -14,12 +14,12 @@
 Summary:	The Qt5 Network Auth library
 Summary(pl.UTF-8):	Biblioteka Qt5 Network Auth
 Name:		qt5-%{orgname}
-Version:	5.15.2
-Release:	2
+Version:	5.15.4
+Release:	1
 License:	GPL v3 or commercial
 Group:		X11/Libraries
-Source0:	https://download.qt.io/official_releases/qt/5.15/%{version}/submodules/%{orgname}-everywhere-src-%{version}.tar.xz
-# Source0-md5:	a23c82ae0527d5bdde61882cabac1f01
+Source0:	https://download.qt.io/official_releases/qt/5.15/%{version}/submodules/%{orgname}-everywhere-opensource-src-%{version}.tar.xz
+# Source0-md5:	00d5d5f93354abd3515cb2600b6b7623
 URL:		https://www.qt.io/
 BuildRequires:	Qt5Core-devel >= %{qtbase_ver}
 BuildRequires:	Qt5Network-devel >= %{qtbase_ver}
@@ -145,9 +145,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libQt5*.so.5.??
 # actually drop *.la, follow policy of not packaging them when *.pc exist
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libQt5*.la
-
-%{__rm} $RPM_BUILD_ROOT%{_examplesdir}/qt5/oauth/redditclient/redditclient
-%{__rm} $RPM_BUILD_ROOT%{_examplesdir}/qt5/oauth/twittertimeline/twittertimeline
 
 %clean
 rm -rf $RPM_BUILD_ROOT
