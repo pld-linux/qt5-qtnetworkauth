@@ -14,12 +14,12 @@
 Summary:	The Qt5 Network Auth library
 Summary(pl.UTF-8):	Biblioteka Qt5 Network Auth
 Name:		qt5-%{orgname}
-Version:	5.15.7
+Version:	5.15.8
 Release:	1
 License:	GPL v3 or commercial
 Group:		X11/Libraries
 Source0:	https://download.qt.io/official_releases/qt/5.15/%{version}/submodules/%{orgname}-everywhere-opensource-src-%{version}.tar.xz
-# Source0-md5:	9404a65021cc6fa7533435220dc80e42
+# Source0-md5:	d013d0cd2a7b46b94b35702878cfe946
 URL:		https://www.qt.io/
 BuildRequires:	Qt5Core-devel >= %{qtbase_ver}
 BuildRequires:	Qt5Network-devel >= %{qtbase_ver}
